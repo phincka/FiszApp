@@ -1,0 +1,18 @@
+html {
+	font-size: 1rem;
+}
+body {
+	color: $primary;
+	font-family: Arial;
+}
+.text {
+	p,
+	li {
+		padding-bottom: 30px;
+	}
+}
+a,
+button,
+input {
+	transition: $transition;
+}

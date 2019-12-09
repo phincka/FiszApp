@@ -1,0 +1,38 @@
+.grid {
+	margin: 0 auto;
+
+	@include media($desktop, max) {
+		width: calc(100% - 20px);
+	}
+
+	@include media($phone, max) {
+		width: calc(100% - 5px);
+	}
+
+	@include media($desktop, min) {
+		width: $gridWidth;
+	}
+}
+
+.header-grid {
+	margin: 0 auto;
+
+	@include media($desktop, max) {
+		width: calc(100% - 0px);
+	}
+
+	@include media($phone, max) {
+		width: calc(100% - 0px);
+	}
+
+	@include media($desktop, min) {
+		width: $projectWidth;
+	}
+}
+.col {
+	@for $i from 1 to 12 {
+		&--#{$i} {
+			@include col(#{$i});
+		}
+	}
+}

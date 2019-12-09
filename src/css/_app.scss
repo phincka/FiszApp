@@ -1,0 +1,41 @@
+$primary: #707070;;
+$transition: all .1s cubic-bezier(.87, -.41, .19, 1);
+
+$logoFont: 'Great Vibes', cursive;
+$poppins: 'Poppins', sans-serif ;
+$openSans: "'Open Sans', sans-serif";
+
+$mainColor: #707070;
+$secondaryColor: #616161;
+$titleColor: #333333;
+$hoverColor: #cc9c5c;
+
+
+/* Breakpoints */
+$minPhone: 450px;
+$phone: 600px;
+$minTablet: 690px;
+$tablet: 770px;
+$minLaptop: 1024px;
+$laptop: 1220px;
+$bigLaptop: 1470px;
+$minDesktop: 1260px; 
+$desktop: 1580px;
+$bigDesktop: 1600px;  // I'm not using this breakpoint.
+
+/* Mobile nav breakpoint */
+$mobile: 800px;
+
+/* Define with of layout to recalculate vw */
+$projectWidth: 1920px;
+$gridWidth: 1580px;
+
+
+/* Libraries */
+@import './lib/reset';
+@import './lib/helpers';
+@import './lib/grid';
+@import './lib/mixins';
+@import './lib/typography';
+
+

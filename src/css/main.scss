@@ -1,0 +1,18 @@
+@import './app';
+
+.display{
+    position: absolute;
+    top: 200px;
+    left: 45%;
+    z-index: 98;
+}
+.hide{
+    display: none !important;
+}
+
+.displayGame{
+    position: absolute;
+    top: 200px;
+    left: 45%;
+    z-index: 99;
+}

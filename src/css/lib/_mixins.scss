@@ -1,0 +1,47 @@
+@mixin fontStyle($color, $fontSize, $fontWeight, $align) {
+    color: $color;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    text-align: $align;      
+}
+@mixin wideFont($color, $fontSize, $fontWeight, $lineH, $letterS) {
+    color: $color;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    line-height: $lineH;  
+    letter-spacing: $letterS;
+}
+
+@mixin justify($direction: null) {
+    @if $direction == null{
+        display: flex;
+        justify-content: space-between;
+    }
+    @else if $direction == 'col' {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+}
+
+@mixin button {
+    height: 47px;
+    @include wideFont($titleColor, 1.2rem, 300, 66px, 8px);
+    font-weight: 400;
+    text-transform: uppercase;
+        a{
+            display: block;
+        }
+}
+
+@mixin hAfter($height, $scale, $time) {
+    content: '';
+	display: block;
+	width: 100%;
+	height: $height;
+	background: $hoverColor;
+    transform: scaleX($scale);										
+    transform-origin: 0;
+	transition: transform $time;
+}
