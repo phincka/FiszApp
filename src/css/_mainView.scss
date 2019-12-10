@@ -1,0 +1,25 @@
+.main{
+    width: 100%;
+    height: calc(100vh - 90px);
+    display: flex;
+        &--gameButton{
+            margin: 0 auto;
+            margin-top: -250px;
+            align-self: center;
+
+            @include button(#19802B, rgb(69, 114, 76), 1.8rem, #fff);
+            padding: 20px 40px;
+            border-radius: 10px;
+            transition: .6s;
+                &:hover{
+                    transform: translateY(5px);
+                }    
+        }
+        .disactive-button{
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            @include button(#B30025, rgb(172, 27, 56), 1.2rem, #fff);
+            padding: 10px 20px;
+        }
+    }

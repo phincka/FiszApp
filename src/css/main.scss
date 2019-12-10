@@ -1,4 +1,8 @@
 @import './app';
+@import './header';
+@import './mainView';
+
+
 
 .display{
     position: absolute;
@@ -11,8 +15,4 @@
 }
 
 .displayGame{
-    position: absolute;
-    top: 200px;
-    left: 45%;
-    z-index: 99;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddForm from './components/addForm';
+import Header from './components/header';
 import GamePanel from './components/gamePanel';
 
 import './css/main.scss';
@@ -9,28 +9,12 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      formStatus: false,
       gameStatus: false,
-      formClass: 'hide',
       gameClass: 'hide',
+      gameButton: 'active-button',
+      gameButtonValue: 'Zagraj',
       cardsArrayLength: '',
       randomArray: [],
-    }
-  }
-
-  formVisable() {
-    if (this.state.formStatus !== true) {
-      console.log(this.state.formStatus)
-      this.setState({
-        formStatus: true,
-        formClass: 'display'
-      })
-    } else {
-      console.log(this.state.formStatus)
-      this.setState({
-        formStatus: false,
-        formClass: 'hide'
-      })
     }
   }
 
@@ -39,13 +23,17 @@ class App extends Component {
       console.log(this.state.gameStatus)
       this.setState({
         gameStatus: true,
-        gameClass: 'displayGame'
+        gameClass: 'displayGame',
+        gameButtonValue: 'Wróć',
+        gameButton: 'disactive-button'
       })
     } else {
       console.log(this.state.gameStatus)
       this.setState({
         gameStatus: false,
-        gameClass: 'hide'
+        gameClass: 'hide',
+        gameButtonValue: 'Zagraj',
+        gameButton: 'active-button'
       })
     }
 
@@ -64,11 +52,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={() => this.formVisable()} >Dodaj</button>
-        <button onClick={() => this.gameVisable()} >Zagraj</button>
+        <Header />
+        <main className="main">
+          <button className={`main--gameButton ${this.state.gameButton}`} onClick={() => this.gameVisable()} >{this.state.gameButtonValue}</button>
+            <GamePanel status={this.state.gameClass} randomArray={this.state.randomArray} />
+          </main>
+       
 
-        <AddForm status={this.state.formClass} />
-        <GamePanel status={this.state.gameClass} randomArray={this.state.randomArray} />
       </div>
     );
   }

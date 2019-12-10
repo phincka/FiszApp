@@ -25,23 +25,11 @@
 
 }
 
-@mixin button {
-    height: 47px;
-    @include wideFont($titleColor, 1.2rem, 300, 66px, 8px);
-    font-weight: 400;
-    text-transform: uppercase;
-        a{
-            display: block;
-        }
+@mixin button($bgColor, $hBgColor, $fSize, $fColor ) {
+    @include wideFont($fColor, $fSize, 600, $fSize, 0.5px);
+    background-color: $bgColor;
+        &:hover{
+            background-color: $hBgColor;
+        }    
 }
 
-@mixin hAfter($height, $scale, $time) {
-    content: '';
-	display: block;
-	width: 100%;
-	height: $height;
-	background: $hoverColor;
-    transform: scaleX($scale);										
-    transform-origin: 0;
-	transition: transform $time;
-}
