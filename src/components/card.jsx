@@ -10,9 +10,7 @@ class Card extends Component{
         }
     }
     cardFlip(){
-        console.log('test');
-        const { cardStatus, cardStyle } = this.state
-        
+        const { cardStatus} = this.state
         if(cardStatus == 0){
             this.setState({
                 cardStatus: 1,
@@ -28,18 +26,16 @@ class Card extends Component{
 
             })
         }
-        console.log(cardStatus)
-        console.log(cardStyle)
     }
     render() {
         return (
-                <div className={`card js-card ${this.state.cardStyle}`} onClick={() => this.cardFlip()} > 
+            <div className={`card js-card gamePanel__card ${this.state.cardStyle}`} onClick={() => this.cardFlip()} > 
                     <div className="card__wrapper" >
                     <div className="card__side is-active">
-                        <h1>{this.props.front}</h1>
+                        <h2 className="card__side--title">{this.props.front}</h2>
                     </div>
                     <div className="card__side card__side--back">
-                        <h2>{this.props.back}</h2>
+                        <h2 className="card__side--title">{this.props.back}</h2>
                     </div>
                 </div>
             </div>

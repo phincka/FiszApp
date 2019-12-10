@@ -1,51 +1,45 @@
 $cardTransition: 0.5s;
-
-
-
-.card {
-   perspective: 600px;
-   position: relative;
-   
-   &.is-switched {
-      .card__wrapper {
-         animation: rotate $cardTransition linear both;
-      }
-   }
+@mixin card {
+    width: 380px;
+    height: 250px;
+    background-color: #A3A9FF;
 }
-
-   .card__wrapper {
-       
-      transform-style: preserve-3d;
-      animation: rotate-inverse $cardTransition linear both;
-   }
-
-   .card__side {
-       
-      backface-visibility: hidden;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-
-      &.is-active {
-          width: 200px;
-        height: 150px;
-          background-color: red;
-         position: static;
-      }
-   }
-
-
-   .card__side--back {
-       width: 200px;
-        height: 150px;
-       background-color: green;
-      transform: rotateY(180deg);
-   }
-
-
-
-
+.card {
+    perspective: 600px;
+    position: relative;
+        &.is-switched {
+            .card__wrapper {
+                animation: rotate $cardTransition linear both;
+            }
+        }
+}
+.card__wrapper {
+    transform-style: preserve-3d;
+    animation: rotate-inverse $cardTransition linear both;
+}
+.card__side {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    padding: 20px;
+        &--title{
+            @include wideFont(#08192F, 1.6rem, 600, 1.6rem, 1px);
+            text-align: center;
+            align-self: center;
+            margin:  0 auto;
+        }
+        &.is-active {
+            @include card;
+            position: static;
+        }
+}
+.card__side--back {
+    @include card;
+    transform: rotateY(180deg);
+}
 
 @keyframes rotate {
   0% {

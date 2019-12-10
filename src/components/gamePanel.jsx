@@ -50,13 +50,15 @@ class GamePanel extends Component {
     }
     render() {
         return (
-            <div className={this.props.status}>
-                <h4>Punkty: {this.state.points}</h4>
+            <div className={`gamePanel ${this.props.status}`}>
+                <p className="gamePanel--points">Punkty <br /> <p class="points">{this.state.points}</p></p>
 
                 <Card front={this.state.frontSite} back={this.state.backSite}/>
-
-                <button onClick={() => { this.getRadom(); this.addPoint()}}>Tak</button>
-                <button onClick={() => this.getRadom()}>Nie</button>
+                <p className="gamePanel--text">Umiesz?</p>
+                <div className="gamePanel__buttons">
+                    <button className="gamePanel__buttons--button" onClick={() => { this.getRadom(); this.addPoint()}}>Tak</button>
+                    <button className="gamePanel__buttons--button" onClick={() => this.getRadom()}>Nie</button>
+                </div>
             </div>
         );
     }

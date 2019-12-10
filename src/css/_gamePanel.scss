@@ -1,0 +1,37 @@
+.gamePanel{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+        &--points{
+            text-align: center;
+            align-self: flex-end;
+            margin: 20px 40px 0 0;
+            @include wideFont(#08192F, 1.2rem, 400, 1.6rem, 1px);
+                .points{
+                    margin-top: 15px;
+                    @include wideFont(#B30025, 1.8rem, 600, 1rem, 1px);
+                }
+        }
+        &__card{
+            margin: 0 auto;
+            width: 380px;
+        }
+        &--text{
+            text-align: center;
+            margin: 20px 0;
+            @include wideFont(#08192F, 1.1rem, 400, 1.1rem, 1px);
+        }
+        &__buttons{
+            &--button{
+                padding: 10px 20px;
+                margin: 0 5px;
+                    &:nth-child(1){
+                        @include button(#19802B, rgb(69, 114, 76), 1.2rem, #fff);
+                    }
+                    &:nth-child(2){
+                        @include button(#B30025, rgb(172, 27, 56), 1.2rem, #fff);
+                    }
+            }
+        }
+}
