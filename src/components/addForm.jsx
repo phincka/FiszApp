@@ -25,12 +25,12 @@ class AddForm extends Component {
     }
     onSubmit(){
         
-        if(localStorage.getItem('cards') !== null){
-            
+        if (localStorage.getItem('cards') !== null) {
+
             //! Return localStorage Cards item if exist
             console.log('Item "cards" exist')
             console.log(localStorage.getItem('cards'))
-            
+
             //! Parse localStorage to JS Object && cerate newElement from Component State
             const retrievedObject = JSON.parse(localStorage.getItem('cards'))
             const newElement = {
@@ -41,17 +41,17 @@ class AddForm extends Component {
             //! Transform object to array && add newElement to array && transform array to object
             const cardsArray = Object.keys(retrievedObject).map(i => retrievedObject[i])
             cardsArray.push(newElement)
-            
+
             const cardsObject = Object.assign({}, cardsArray)
             localStorage.setItem('cards', JSON.stringify(cardsObject))
-            
+
             console.log(cardsObject)
             console.log(localStorage.getItem('cards'))
 
-        }else{
+        } else {
             console.log('Item "cards" not exist')
             //! Create localStorage item 'cards' with cardObject
-            
+
             const cardObject = [
                 {
                     front: this.state.front,
@@ -71,12 +71,14 @@ class AddForm extends Component {
     }
     render() {
         return (
-            <div className={this.props.status}>
-                <input type="text" name="front" placeholder="awers" onChange={this.onChange} /> <br />
-                <input type="text" name="back" placeholder="rewers" onChange={this.onChange} /> <br /><br />
-                
-                <input onClick={this.onSubmit} type="submit" value="Dodaj" />
-                <input onClick={this.reset} type="submit" value="Usuń"/>
+            <div className={`addForm ${this.props.status}`}>
+                <div className="addForm__inputs">
+                    <input className="addForm__inputs--input" type="text" name="front" placeholder="Awers" onChange={this.onChange} />
+                    <input className="addForm__inputs--input" type="text" name="back" placeholder="Rewers" onChange={this.onChange} />
+                    
+                    <input className="addForm__inputs--input--add" onClick={this.onSubmit} type="submit" value="Dodaj" />
+                </div>
+                <input className="addForm--delete" onDoubleClick={this.reset} type="submit" value="Usuń wszystkie"/>
             </div>
         );
     }

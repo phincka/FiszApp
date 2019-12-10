@@ -28,6 +28,7 @@
 @mixin button($bgColor, $hBgColor, $fSize, $fColor ) {
     @include wideFont($fColor, $fSize, 600, $fSize, 0.5px);
     background-color: $bgColor;
+    border-radius: 10px;
         &:hover{
             background-color: $hBgColor;
         }    

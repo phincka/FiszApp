@@ -9,7 +9,6 @@
 
             @include button(#19802B, rgb(69, 114, 76), 1.8rem, #fff);
             padding: 20px 40px;
-            border-radius: 10px;
             transition: .6s;
                 &:hover{
                     transform: translateY(5px);
