@@ -1,8 +1,62 @@
+
+import React, { Component } from "react";
+import Main from "./components/MainToggle";
+import AddForm from "./components/addForm";
+import Header from "./components/header";
+
+import './css/main.scss';
+import GamePanel from "./components/gamePanel";
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      cardsArrayLength: '',
+      randomArray: [],
+    }
+  }
+
+  gameVisable() {
+    //! Passed  random numbers to state and next a send this array to props...
+
+    
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+          <AddForm>
+          </AddForm>
+
+          
+          <Main onClick={() => this.gameVisable()} title="Zagraj">
+            <GamePanel randomArray={this.state.randomArray} />
+          </Main>
+
+        
+        
+      </div>
+      
+    );
+  }
+}
+
+export default App;
+
+/*
+
 import React, { Component } from 'react';
 import Header from './components/header';
 import GamePanel from './components/gamePanel';
 
-import './css/main.scss';
+
+
+
+
+
+
 
 
 class App extends Component {
@@ -65,3 +119,4 @@ class App extends Component {
 }
 
 export default App;
+*/

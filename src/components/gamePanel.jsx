@@ -10,31 +10,58 @@ class GamePanel extends Component {
             points: 0,
             frontSite: '',
             backSite: '',
+            cardsArrayLength: '',
+            randomNumArray: []  
         }
     }
+    componentDidMount(){
+        const { numOfGenerate,  randomNumArray } = this.state
+
+
+        //! Geting Cards as object
+        const retrievedObject = JSON.parse(localStorage.getItem('cards'))
+        //! Convert Object to Array
+        const cardsArray = Object.keys(retrievedObject).map(i => retrievedObject[i])
+
+        const cardsLength = cardsArray.length
+        const randomArray = Array.from({ length: cardsLength }, () => Math.floor(Math.random() * cardsLength));
+       
+        this.setState({
+            numOfGenerate: numOfGenerate + 1,
+            frontSite: cardsArray[randomArray[numOfGenerate]].front,
+            backSite: cardsArray[randomArray[numOfGenerate]].back,
+            randomNumArray: randomArray
+        })
+        
+        console.log(`Ilość kart: ${cardsLength}`)
+        console.log(`Losowy numer: ${randomNumArray}`)
+        console.log(`Id kliknięcia: ${numOfGenerate}`)
+
+        console.log('----------------------------------')
+    }
+    
     getRadom(){
+        const { numOfGenerate, randomNumArray } = this.state
+
         const retrievedObject = JSON.parse(localStorage.getItem('cards'))
         const cardsArray = Object.keys(retrievedObject).map(i => retrievedObject[i])
-        const randomNumTab = this.props.randomArray
         
-        const { numOfGenerate } = this.state
-        
-        if (numOfGenerate == cardsArray.length) {
-            console.log('Koniec rekordów')
-            this.setState({endPoint: true})
-
-        }else{
-            console.table(cardsArray[randomNumTab[numOfGenerate]])
-
+        if (numOfGenerate !== cardsArray.length) {
             this.setState({
                 numOfGenerate: numOfGenerate + 1,
-                frontSite: cardsArray[randomNumTab[numOfGenerate]].front,
-                backSite: cardsArray[randomNumTab[numOfGenerate]].back,
+                frontSite: cardsArray[randomNumArray[numOfGenerate]].front,
+                backSite: cardsArray[randomNumArray[numOfGenerate]].back,
             })
 
+            console.log(this.state.randomNumArray)
 
-            console.log(`Losowy numer: ${randomNumTab}`)
+            console.log(`Losowy numer: ${randomNumArray}`)
             console.log(`Id kliknięcia: ${numOfGenerate}`)
+
+            console.log('----------------------------------')
+        }else{
+            console.log('Koniec rekordów')
+            this.setState({ endPoint: true })
         }
         
         
