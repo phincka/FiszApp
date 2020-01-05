@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AddForm from './addForm';
+import FormToggle from "./formToggle";
+
 
 class Header extends Component {
     constructor(){
@@ -32,9 +34,10 @@ class Header extends Component {
         return (
              <header className="header">
                 <h2 className="header--title">EnFIsh</h2>
-                <button className="header--formButton" onClick={() => this.formVisable()} >{this.state.formButtonValue}</button>
 
-                <AddForm status={this.state.formClass} />
+                <FormToggle title="Dodaj">
+                    <AddForm />
+                </FormToggle>
              </header>
         );
     }

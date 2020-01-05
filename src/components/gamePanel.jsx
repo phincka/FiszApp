@@ -11,11 +11,13 @@ class GamePanel extends Component {
             frontSite: '',
             backSite: '',
             cardsArrayLength: '',
-            randomNumArray: []  
+            randomNumArray: [],
         }
     }
     componentDidMount(){
         const { numOfGenerate,  randomNumArray } = this.state
+
+        
 
 
         //! Geting Cards as object
@@ -77,10 +79,11 @@ class GamePanel extends Component {
     }
     render() {
         return (
-            <div className={`gamePanel ${this.props.status}`}>
+
+                <div className={`gamePanel ${this.props.status}`}>
                 <p className="gamePanel--points">Punkty <br /> <p class="points">{this.state.points}</p></p>
 
-                <Card front={this.state.frontSite} back={this.state.backSite}/>
+                <Card front={this.state.frontSite} back={this.state.backSite} />
                 <p className="gamePanel--text">Umiesz?</p>
                 <div className="gamePanel__buttons">
                     <button className="gamePanel__buttons--button" onClick={() => { this.getRadom(); this.addPoint()}}>Tak</button>

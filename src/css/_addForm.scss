@@ -1,5 +1,8 @@
 .addForm{
-    display: none;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 99;
     width: 100%;
     height: calc(100vh - 90px);
     background-color: #fff;
@@ -17,7 +20,6 @@
                         &--add{
                             display: block;
                             margin: 0 auto;
-                            margin-top: 30px;
                             padding: 10px 40px;
                             @include button(#B30025, rgb(172, 27, 56), 1.2rem, #fff);
                         }
@@ -29,5 +31,15 @@
             right: 20px;
             @include button(#B30025, rgb(172, 27, 56), 1.2rem, #fff);
             padding: 10px 20px;
+        }
+        &--addInfo{
+            margin-top: 15px;
+            @include wideFont(red, 1.1rem, 300, 1rem, 1px);
+            text-align: center;
+        }
+        &--deletedInfo{
+            @include wideFont(red, 1.1rem, 300, 1rem, 1px);
+            margin-top: 15px;
+            text-align: center;
         }
 }

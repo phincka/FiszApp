@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Main extends Component {
+class FormToggle extends Component {
 
     constructor(props) {
         super(props);
@@ -9,16 +9,15 @@ class Main extends Component {
             disActive: '',
         };
 
-        this.mainToggle = this.mainToggle.bind(this);
+        this.formToggle = this.formToggle.bind(this);
     }
-
-    mainToggle() {
+    formToggle() {
         const { opened } = this.state;
         this.setState({
             opened: !opened,
             disActive: 'disactive-button',
         });
-        if(opened === true){
+        if (opened === true) {
             this.setState({
                 disActive: '',
             });
@@ -34,12 +33,12 @@ class Main extends Component {
         }
 
         return (
-            <div className="main__gamePanel">
-                <button className={`main__gamePanel--gameButton ${this.state.disActive}`} onClick={this.mainToggle}>
+            <div className="header__form">
+                <button className={`header__form--formButton ${this.state.disActive}`} onClick={this.formToggle}>
                     {title}
                 </button>
                 {opened && (
-                    <div className="gamePanel">
+                    <div>
                         {children}
                     </div>
                 )}
@@ -48,4 +47,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default FormToggle;
