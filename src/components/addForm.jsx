@@ -10,23 +10,25 @@ class AddForm extends Component {
             back: '',
             added: false,
             deleted: false,
-            appClass: null
+            loadClass: null
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.AddbyKey = this.AddbyKey.bind(this);
         this.reset = this.reset.bind(this);
 
     }
     componentDidMount(){
-        console.log('Ładuje!!')
-        this.setState({ appClass: 'load' });
+        console.log('Loading!!')
+        this.setState({ loadClass: 'load' });
 
         setTimeout(() => {
             this.setState({
-                appClass: null,
+                loadClass: null,
             })
-        }, 1000)
+        }, 500)
     }
+    
     onChange(e){
         const targetName = e.target.name;
         if ( targetName === 'front') {
@@ -39,8 +41,7 @@ class AddForm extends Component {
             })
         }
     }
-    onSubmit(e){
-        if (e.key === 'Enter') {
+    onSubmit(){
             if (localStorage.getItem('cards') !== null) {
 
                 //! Return localStorage Cards item if exist
@@ -88,7 +89,11 @@ class AddForm extends Component {
                     added: false,
                 })
             }, 1000)
-        }
+    }
+    AddbyKey(e){
+        //! Checks for a Enter has been pressed
+        const submit = e.key === 'Enter' ? this.onSubmit() : null
+        return submit
     }
     reset(){
         //! Delete 'cards' from localStorage
@@ -104,14 +109,15 @@ class AddForm extends Component {
             })
         }, 1000)
     }
-    
+
 
     render() {
         return (
-            <div className={`addForm ${this.state.appClass}`}>
+            <div className="addForm">
+                <div className={`${this.state.loadClass}`}></div>
                 <div className="addForm__inputs">
-                    <input className="addForm__inputs--input" type="text" name="front" placeholder="Awers" value={this.state.front} onChange={this.onChange} onKeyPress={this.onSubmit} />
-                    <input className="addForm__inputs--input" type="text" name="back" placeholder="Rewers" value={this.state.back} onChange={this.onChange} onKeyPress={this.onSubmit} />
+                    <input className="addForm__inputs--input" type="text" name="front" placeholder="Awers" value={this.state.front} onChange={this.onChange} onKeyPress={this.AddbyKey} />
+                    <input className="addForm__inputs--input" type="text" name="back" placeholder="Rewers" value={this.state.back} onChange={this.onChange} onKeyPress={this.AddbyKey} />
                     <input className="addForm__inputs--input--add" onClick={this.onSubmit}  type="submit" value="Dodaj" />
 
                     {this.state.added && (

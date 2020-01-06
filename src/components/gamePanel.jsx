@@ -12,13 +12,20 @@ class GamePanel extends Component {
             backSite: '',
             cardsArrayLength: '',
             randomNumArray: [],
+            loadClass: null,
         }
     }
     componentDidMount(){
         const { numOfGenerate,  randomNumArray } = this.state
 
-        
+        console.log('Loading!!')
+        this.setState({ loadClass: 'load' });
 
+        setTimeout(() => {
+            this.setState({
+                loadClass: null,
+            })
+        }, 500)
 
         //! Geting Cards as object
         const retrievedObject = JSON.parse(localStorage.getItem('cards'))
@@ -79,8 +86,8 @@ class GamePanel extends Component {
     }
     render() {
         return (
-
-                <div className={`gamePanel ${this.props.status}`}>
+            <div className={`gamePanel ${this.props.status}`}>
+                <div className={this.state.loadClass}></div>
                 <p className="gamePanel--points">Punkty <br /> <p class="points">{this.state.points}</p></p>
 
                 <Card front={this.state.frontSite} back={this.state.backSite} />

@@ -7,6 +7,7 @@ class Main extends Component {
         this.state = {
             opened: false,
             disActive: '',
+            loadClass: null,
         };
 
         this.mainToggle = this.mainToggle.bind(this);
@@ -14,14 +15,28 @@ class Main extends Component {
 
     mainToggle() {
         const { opened } = this.state;
-        this.setState({
-            opened: !opened,
-            disActive: 'disactive-button',
-        });
-        if(opened === true){
+        
+        if(localStorage.getItem('cards') == null){
+            console.log('pusto')
+        }else{
+
             this.setState({
-                disActive: '',
+                opened: !opened,
+                disActive: 'disactive-button',
             });
+            
+            if(opened === true){
+                this.setState({
+                    disActive: '',
+                    loadClass: 'load',
+                });
+
+                setTimeout(() => {
+                    this.setState({
+                        loadClass: null,
+                    })
+                }, 500)
+            }
         }
     }
 
@@ -35,6 +50,7 @@ class Main extends Component {
 
         return (
             <div className="main__gamePanel">
+                <div className={this.state.loadClass}></div>
                 <button className={`main__gamePanel--gameButton ${this.state.disActive}`} onClick={this.mainToggle}>
                     {title}
                 </button>
