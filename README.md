@@ -1,7 +1,7 @@
 
-## Available Scripts
+## enFish! But hmmmm... it's only temporary name :)
 
-In the project directory, you can run:
+
 
 ### `yarn start`
 
