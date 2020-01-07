@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './card';
+import EndBoard from './endBoard';
 
 class GamePanel extends Component {
     constructor(){
@@ -8,15 +9,16 @@ class GamePanel extends Component {
             endPoint: false,
             numOfGenerate: 0,
             points: 0,
-            frontSite: '',
-            backSite: '',
-            cardsArrayLength: '',
+            frontSite: null,
+            backSite: null,
             randomNumArray: [],
+            cardsCount: 0,
             loadClass: null,
+            endPointClass: null,
         }
     }
     componentDidMount(){
-        const { numOfGenerate,  randomNumArray } = this.state
+        const { numOfGenerate, randomNumArray, cardsCount } = this.state
 
         console.log('Loading!!')
         this.setState({ loadClass: 'load' });
@@ -61,18 +63,19 @@ class GamePanel extends Component {
             numOfGenerate: numOfGenerate + 1,
             frontSite: cardsArray[randomArray[numOfGenerate]].front,
             backSite: cardsArray[randomArray[numOfGenerate]].back,
-            randomNumArray: randomArray
+            randomNumArray: randomArray,
+            cardsCount: cardsLength
         })
         
-        console.log(`Ilość kart: ${cardsLength}`)
+        console.log('----------------------------------')
+        console.log(`Ilość kart: ${cardsCount}`)
         console.log(`Losowy numer: ${randomNumArray}`)
         console.log(`Id kliknięcia: ${numOfGenerate}`)
-
         console.log('----------------------------------')
     }
     
     getRadom(){
-        const { numOfGenerate, randomNumArray } = this.state
+        const { numOfGenerate, randomNumArray, cardsCount } = this.state
 
         const retrievedObject = JSON.parse(localStorage.getItem('cards'))
         const cardsArray = Object.keys(retrievedObject).map(i => retrievedObject[i])
@@ -84,15 +87,17 @@ class GamePanel extends Component {
                 backSite: cardsArray[randomNumArray[numOfGenerate]].back,
             })
 
-            console.log(this.state.randomNumArray)
-
+            console.log('----------------------------------')
+            console.log(`Ilość kart: ${cardsCount}`)
             console.log(`Losowy numer: ${randomNumArray}`)
             console.log(`Id kliknięcia: ${numOfGenerate}`)
-
             console.log('----------------------------------')
         }else{
             console.log('Koniec rekordów')
-            this.setState({ endPoint: true })
+            this.setState({ 
+                endPoint: true,
+                endPointClass: 'endBoard'
+            })
         }
         
         
@@ -107,20 +112,30 @@ class GamePanel extends Component {
         }
     }
     render() {
-        return (
-            <div className={`gamePanel ${this.props.status}`}>
-                <div className={this.state.loadClass}></div>
-                <p className="gamePanel--points">Punkty <br /> <p class="points">{this.state.points}</p></p>
+        const { loadClass, endPointClass, frontSite, backSite, endPoint, points, cardsCount } = this.state
 
-                <Card front={this.state.frontSite} back={this.state.backSite} />
+            return (
+                <div className={`gamePanel ${this.props.status}`}>
+                    <div className={loadClass}></div>
+                    <p className="gamePanel--points">Punkty <br /> <p class="points">{points}</p></p>
 
-                <p className="gamePanel--text">Umiesz?</p>
-                <div className="gamePanel__buttons">
-                    <button className="gamePanel__buttons--button" onClick={() => { this.getRadom(); this.addPoint()}}>Tak</button>
-                    <button className="gamePanel__buttons--button" onClick={() => this.getRadom()}>Nie</button>
+                    <Card front={frontSite} back={backSite} />
+
+                    <p className="gamePanel--text">Umiesz?</p>
+                    <div className="gamePanel__buttons">
+                        <button className="gamePanel__buttons--button" onClick={() => { this.getRadom(); this.addPoint()}}>Tak</button>
+                        <button className="gamePanel__buttons--button" onClick={() => this.getRadom()}>Nie</button>
+                    </div>
+
+                    {
+                        endPoint && (
+                            <div className={endPointClass}>
+                                <EndBoard points={points} numOfCards={cardsCount}/>
+                            </div>
+                        )
+                    }
                 </div>
-            </div>
-        );
+            );
     }
 }
 

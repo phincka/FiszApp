@@ -58,3 +58,24 @@
             @include wideFont(#B30025, 1.8rem, 600, 1rem, 1px);
         }
 }
+.endBoard{
+    position: fixed;
+    width: 100%;
+    height: 80vh;
+    top: 90px;
+    left: 0;
+    z-index: 99;
+    @include center;
+    background-color: #fff;
+        &--title{
+            margin-top: -200px;
+            @include wideFont(#B30025, 2.4rem, 600, 2.4rem, 1px);
+        }
+        &--result{
+            @include wideFont($mainColor, 1.4rem, 400, 2rem, 1px);
+            margin-top: 25px;
+        }
+        &--points{
+            @include wideFont($mainColor, 1.5rem, 600, 2rem, 1px);
+        }
+}
