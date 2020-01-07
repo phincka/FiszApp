@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import AddedInfo from './addedInfo';
-import DeletedInfo from './deletedInfo';
+import FormInfo from './formInfo';
 
 class AddForm extends Component {
     constructor(){
@@ -8,9 +7,8 @@ class AddForm extends Component {
         this.state = {
             front: '',
             back: '',
-            added: false,
-            deleted: false,
-            loadClass: null
+            formInfo: null,
+            loadClass: null,
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -42,6 +40,8 @@ class AddForm extends Component {
         }
     }
     onSubmit(){
+        const { front, back } = this.state
+        
             if (localStorage.getItem('cards') !== null) {
 
                 //! Return localStorage Cards item if exist
@@ -50,33 +50,72 @@ class AddForm extends Component {
 
                 //! Parse localStorage to JS Object && cerate newElement from Component State
                 const retrievedObject = JSON.parse(localStorage.getItem('cards'))
-                const newElement = {
-                    front: this.state.front,
-                    back: this.state.back
-                }
 
-                //! Transform object to array && add newElement to array && transform array to object
-                const cardsArray = Object.keys(retrievedObject).map(i => retrievedObject[i])
-                cardsArray.push(newElement)
-
-                const cardsObject = Object.assign({}, cardsArray)
-                localStorage.setItem('cards', JSON.stringify(cardsObject))
-
-                console.table(cardsObject)
-                console.log(localStorage.getItem('cards'))
-
-            } else {
-                console.log('Item "cards" not exist')
-                //! Create localStorage item 'cards' with cardObject
-
-                const cardObject = [
-                    {
+                if(front !== '' && back !== ''){
+                    const newElement = {
                         front: this.state.front,
                         back: this.state.back
                     }
-                ]
-                localStorage.setItem('cards', JSON.stringify(cardObject))
+
+                    //! Transform object to array && add newElement to array && transform array to object
+                    const cardsArray = Object.keys(retrievedObject).map(i => retrievedObject[i])
+                    cardsArray.push(newElement)
+
+                    const cardsObject = Object.assign({}, cardsArray)
+                    localStorage.setItem('cards', JSON.stringify(cardsObject))
+
+                    console.table(cardsObject)
+                    console.log(localStorage.getItem('cards'))
+
+                    //! Set formInfo and send to state, next send to props
+                    this.setState({ formInfo: 'Pomyślnie dodano fiszkę!' })
+                    setTimeout(() => {
+                        this.setState({ formInfo: null })
+
+                    }, 1000)
+
+                } else {
+
+                    //! Set formInfo when input is empty
+                    this.setState({formInfo: 'Oba pola muszą być uzupełnione!'})
+                    setTimeout( () => {
+                        this.setState({formInfo: null})
+
+                    }, 1000)
+                }
+            } else {
+                console.log('Item "cards" not exist')
+                
+                //! Create localStorage item 'cards' with cardObject
+                if (front !== '' && back !== '') {
+                    const cardObject = [
+                        {
+                            front: this.state.front,
+                            back: this.state.back
+                        }
+                    ]
+                    localStorage.setItem('cards', JSON.stringify(cardObject))
+
+                    //! Set formInfo and send to state, next send to props
+                    this.setState({ formInfo: 'Pomyślnie dodano fiszkę!' })
+                    setTimeout(() => {
+                        this.setState({ formInfo: null })
+
+                    }, 1000)
+
+                } else {
+
+                    //! Set formInfo when input is empty
+                    this.setState({ formInfo: 'Oba pola muszą być uzupełnione!' })
+                    setTimeout(() => {
+                        this.setState({ formInfo: null })
+
+                    }, 1000)
+                }
+
+
             }
+
             this.setState({
                 front: '',
                 back: '',
@@ -100,35 +139,27 @@ class AddForm extends Component {
         localStorage.removeItem('cards')
         console.log('Cards was deleted.')
        
-        this.setState({
-            deleted: true
-        })
+        //! Set formInfo when card was deleted
+        this.setState({ formInfo: 'Wszystkie karty zostały usunięte!' })
         setTimeout(() => {
-            this.setState({
-                deleted: false,
-            })
+            this.setState({ formInfo: null })
+
         }, 1000)
     }
-
 
     render() {
         return (
             <div className="addForm">
                 <div className={`${this.state.loadClass}`}></div>
                 <div className="addForm__inputs">
-                    <input className="addForm__inputs--input" type="text" name="front" placeholder="Awers" value={this.state.front} onChange={this.onChange} onKeyPress={this.AddbyKey} />
+                    <input className="addForm__inputs--input" type="text" name="front" placeholder="Awers"  value={this.state.front} onChange={this.onChange} onKeyPress={this.AddbyKey} />
                     <input className="addForm__inputs--input" type="text" name="back" placeholder="Rewers" value={this.state.back} onChange={this.onChange} onKeyPress={this.AddbyKey} />
                     <input className="addForm__inputs--input--add" onClick={this.onSubmit}  type="submit" value="Dodaj" />
-
-                    {this.state.added && (
-                        <AddedInfo />
-                    )}
+                        {this.state.formInfo && (
+                            <FormInfo formInfo={this.state.formInfo} />
+                        )}
                 </div>
-                
                 <input className="addForm--delete" onDoubleClick={this.reset} type="submit" value="Usuń wszystkie"/>
-                {this.state.deleted && (
-                    <DeletedInfo />
-                )}
             </div>
         );
     }

@@ -4,17 +4,3 @@
 @import './addForm';
 @import './gamePanel';
 @import './card';
-
-
-
-.display{
-    position: absolute;
-    top: 90px;
-    z-index: 99;
-}
-.hide{
-    display: none !important;
-}
-
-.displayGame{
-}

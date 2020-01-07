@@ -10,6 +10,7 @@ class FormToggle extends Component {
         };
         this.formToggle = this.formToggle.bind(this);
     }
+    
     formToggle() {
         const { opened } = this.state;
         

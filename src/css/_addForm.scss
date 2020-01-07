@@ -34,11 +34,11 @@
         }
         &--addInfo{
             margin-top: 15px;
-            @include wideFont(red, 1.1rem, 300, 1rem, 1px);
+            @include wideFont(#B30025, 1.1rem, 300, 1rem, 1px);
             text-align: center;
         }
         &--deletedInfo{
-            @include wideFont(red, 1.1rem, 300, 1rem, 1px);
+            @include wideFont(#B30025, 1.1rem, 300, 1rem, 1px);
             margin-top: 15px;
             text-align: center;
         }

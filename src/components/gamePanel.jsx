@@ -33,7 +33,29 @@ class GamePanel extends Component {
         const cardsArray = Object.keys(retrievedObject).map(i => retrievedObject[i])
 
         const cardsLength = cardsArray.length
-        const randomArray = Array.from({ length: cardsLength }, () => Math.floor(Math.random() * cardsLength));
+
+
+        //! Draw numbers
+        let numersArray = []
+        
+        for (let i = 0; i < cardsLength; i++) {
+            numersArray.push(i)
+        }
+
+        let randomArray = []
+
+        for (let i = 0; i < numersArray.length; i++) {
+            const randomNumber = Math.floor(Math.random() * numersArray.length)
+            
+            if (randomArray.indexOf(randomNumber) === -1 || randomArray.length > numersArray.length) {
+                randomArray.push(randomNumber)
+                console.log('Added')
+                
+            } else {
+                console.log('Repeted')
+                i -= 1
+            }
+        }
        
         this.setState({
             numOfGenerate: numOfGenerate + 1,
@@ -76,7 +98,7 @@ class GamePanel extends Component {
         
     }
     addPoint(){
-        if (this.state.endPoint == false) {
+        if (this.state.endPoint === false) {
             this.setState({
                 points: this.state.points +1
             })
@@ -91,6 +113,7 @@ class GamePanel extends Component {
                 <p className="gamePanel--points">Punkty <br /> <p class="points">{this.state.points}</p></p>
 
                 <Card front={this.state.frontSite} back={this.state.backSite} />
+
                 <p className="gamePanel--text">Umiesz?</p>
                 <div className="gamePanel__buttons">
                     <button className="gamePanel__buttons--button" onClick={() => { this.getRadom(); this.addPoint()}}>Tak</button>

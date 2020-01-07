@@ -1,48 +1,59 @@
 import React, { Component } from "react";
 
 class Main extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             opened: false,
-            disActive: '',
+            disActive: null,
             loadClass: null,
+            noCardsInfo: null
         };
-
         this.mainToggle = this.mainToggle.bind(this);
     }
 
     mainToggle() {
         const { opened } = this.state;
-        
-        if(localStorage.getItem('cards') == null){
-            console.log('pusto')
-        }else{
 
             this.setState({
                 opened: !opened,
                 disActive: 'disactive-button',
             });
-            
-            if(opened === true){
-                this.setState({
-                    disActive: '',
-                    loadClass: 'load',
-                });
 
+            
+            if (localStorage.getItem('cards') == null) {
+
+                this.setState({
+                    noCardsInfo: 'no-cards',
+                })
                 setTimeout(() => {
                     this.setState({
-                        loadClass: null,
+                        noCardsInfo: null,
+                        opened: null,
+                        disActive: null,
                     })
-                }, 500)
+                }, 1000)
+                
+            } else {
+
+                if (opened === true) {
+                    this.setState({
+                        disActive: '',
+                        loadClass: 'load',
+                    });
+
+                    setTimeout(() => {
+                        this.setState({
+                            loadClass: null,
+                        })
+                    }, 500)
+                }
             }
-        }
     }
 
     render() {
         let { title, children } = this.props;
-        const { opened } = this.state;
+        const { opened, noCardsInfo } = this.state;
 
         if (opened) {
             title = 'Wróć';
@@ -54,10 +65,22 @@ class Main extends Component {
                 <button className={`main__gamePanel--gameButton ${this.state.disActive}`} onClick={this.mainToggle}>
                     {title}
                 </button>
+
                 {opened && (
-                    <div className="gamePanel">
-                        {children}
-                    </div>
+                    localStorage.getItem('cards') ? (
+                        <div className="gamePanel">
+                            {children}
+                        </div>
+                    ) 
+                    : 
+                    ( 
+                    noCardsInfo &&
+                        (
+                            <div className={noCardsInfo}>
+                                <h1 className="no-cards--text"> Brak fiszek! </h1>
+                            </div>
+                        )
+                    )
                 )}
             </div>
         );

@@ -11,7 +11,7 @@ class Card extends Component{
     }
     cardFlip(){
         const { cardStatus} = this.state
-        if(cardStatus == 0){
+        if(cardStatus === 0){
             this.setState({
                 cardStatus: 1,
                 cardStyle: 'is-switched',
