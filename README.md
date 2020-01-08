@@ -9,8 +9,8 @@ and thanks to that you can go back to learning whenever you want.
 > Collect points and enjoy your progress
 
 ### New Features!
-  - Import a HTML file and watch it magically convert to Markdown
-
+  - Save flashcards in your browser memory!
+  
 <br>
 
 #### Technologies:
