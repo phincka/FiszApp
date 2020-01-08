@@ -28,7 +28,7 @@ Install the dependencies and start the server.
 $ yarn install
 $ yarn start
 ```
-> For live version <a href="https://fiszapp.netlify.com/">here</a>
+> For live version <a target="_blank" href="https://fiszapp.netlify.com/">here</a>
 
 ###### Created by
 ----
