@@ -19,7 +19,7 @@ and thanks to that you can go back to learning whenever you want.
   - SASS (Scss)
   - HTML5
 
-</br>
+
 ### Installation
 
 Install the dependencies and devDependencies and start the server.
@@ -29,7 +29,7 @@ $ yarn install
 $ yarn start
 ```
 
-<br/>
+
 ###### Created by
 ----
 Paweł Hincka, 2020
