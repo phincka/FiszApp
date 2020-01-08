@@ -11,14 +11,15 @@ and thanks to that you can go back to learning whenever you want.
 ### New Features!
   - Import a HTML file and watch it magically convert to Markdown
 
-<br/>
+<br>
+
 #### Technologies:
   - JavaScript ES6
   - React.js
   - SASS (Scss)
   - HTML5
 
-<br/>
+<br>
 ### Installation
 
 Install the dependencies and devDependencies and start the server.
@@ -28,7 +29,7 @@ $ yarn install
 $ yarn start
 ```
 
-<br/>
+<br>
 ###### Created by
 ----
 Paweł Hincka, 2020
