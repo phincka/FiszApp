@@ -33,7 +33,7 @@ class Header extends Component {
     render() {
         return (
              <header className="header">
-                <h2 className="header--title"><a href="http://localhost:3000/"> FiszApp </a></h2>
+                <h2 className="header--title"><a href="./"> FiszApp </a></h2>
                     <FormToggle title="Dodaj">
                         <AddForm />
                     </FormToggle>
