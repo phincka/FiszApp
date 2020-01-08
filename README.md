@@ -1,6 +1,6 @@
+# FiszApp
 
-## enFish! But hmmmm... it's only temporary name :)
-<h1> TEST </h1>
+
 
 
 ### `yarn start`
