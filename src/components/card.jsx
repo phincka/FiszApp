@@ -27,10 +27,19 @@ class Card extends Component{
 
             })
         }
+
+        setTimeout(() => {
+            this.setState({
+                cardStatus: 0,
+                cardStyle: '',
+                allCardStyle: '',
+            })
+        }, 900)
     }
+    
     render() {
-        let { cardStyle } = this.props
-        const { front, back } =this.state
+        let { front, back } =this.props
+        const { cardStyle } = this.state
 
         return (
             <div className={`card js-card gamePanel__card ${cardStyle}`} onClick={() => this.cardFlip()} > 

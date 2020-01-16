@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Main extends Component {
     constructor() {
         super();
         this.state = {
-            opened: false,
-            disActive: null,
+            path: '/game',
+            disActive: '',
             loadClass: null,
             noCardsInfo: null
         };
@@ -13,14 +14,8 @@ class Main extends Component {
     }
 
     mainToggle() {
-        const { opened } = this.state;
+        this.setState({ disActive: 'disactive-button',})
 
-            this.setState({
-                opened: !opened,
-                disActive: 'disactive-button',
-            });
-
-            
             if (localStorage.getItem('cards') == null) {
 
                 this.setState({
@@ -29,59 +24,41 @@ class Main extends Component {
                 setTimeout(() => {
                     this.setState({
                         noCardsInfo: null,
-                        opened: null,
+                        path: null,
                         disActive: null,
                     })
                 }, 1000)
                 
             } else {
-
-                if (opened === true) {
+                this.setState({
+                    disActive: '',
+                    loadClass: 'load',
+                });
+                setTimeout(() => {
                     this.setState({
-                        disActive: '',
-                        loadClass: 'load',
-                    });
-
-                    setTimeout(() => {
-                        this.setState({
-                            loadClass: null,
-                        })
-                    }, 500)
-                }
+                        loadClass: null,
+                    })
+                }, 500)
             }
     }
 
     render() {
-        let { title, children } = this.props;
-        const { opened, noCardsInfo } = this.state;
+        let { title } = this.props;
+        const { path, noCardsInfo } = this.state;
 
-        if (opened) {
-            title = 'Wróć';
-        }
 
         return (
             <div className="main__gamePanel">
                 <div className={this.state.loadClass}></div>
-                <button className={`main__gamePanel--gameButton ${this.state.disActive}`} onClick={this.mainToggle}>
-                    {title}
-                </button>
-
-                {opened && (
-                    localStorage.getItem('cards') ? (
-                        <div className="gamePanel">
-                            {children}
-                        </div>
-                    ) 
-                    : 
-                    ( 
+                <Link to={ path } className="main__gamePanel--gameButton" onClick={this.formToggle}>{ title }</Link>
+                {
                     noCardsInfo &&
-                        (
-                            <div className={noCardsInfo}>
-                                <h1 className="no-cards--text"> Brak fiszek! </h1>
-                            </div>
-                        )
+                    (
+                        <div className={noCardsInfo}>
+                            <h1 className="no-cards--text"> Brak fiszek! </h1>
+                        </div>
                     )
-                )}
+                }
             </div>
         );
     }

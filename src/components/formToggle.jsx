@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 class FormToggle extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            opened: false,
+            path: '/add-card',
             disActive: '',
             loadClass: null,
         };
@@ -12,19 +13,26 @@ class FormToggle extends Component {
     }
     
     formToggle() {
-        const { opened } = this.state;
-        
-        this.setState({
-            opened: !opened,
-            disActive: 'disactive-button',
-        });
+        const { path } = this.state;
 
-        if (opened === true) {
+        if( path === '/add-card' ){
             this.setState({
+                path: '/',
                 disActive: '',
                 loadClass: 'load',
             });
+            setTimeout(() => {
+                this.setState({
+                    loadClass: null,
+                })
+            }, 500)
 
+        }else{
+            this.setState({
+                path: '/add-card',
+                disActive: '',
+                loadClass: 'load',
+            });
             setTimeout(() => {
                 this.setState({
                     loadClass: null,
@@ -34,24 +42,18 @@ class FormToggle extends Component {
     }
 
     render() {
-        let { title, children } = this.props;
-        const { opened } = this.state;
+        let { title } = this.props;
+        const { path } = this.state;
 
-        if (opened) {
+        if (path === '/') {
             title = 'Wróć';
         }
-
+        
+        console.log(path)
         return (
             <div className="header__form">
                 <div className={this.state.loadClass}></div>
-                <button className={`header__form--formButton ${this.state.disActive}`} onClick={this.formToggle}>
-                    {title}
-                </button>
-                {opened && (
-                    <div>
-                        {children}
-                    </div>
-                )}
+                <Link to={ path } className={`header__form--formButton ${this.state.disActive}`} onClick={this.formToggle}>{ title }</Link>
             </div>
         );
     }
