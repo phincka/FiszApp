@@ -10,11 +10,11 @@ class AddForm extends Component {
             formInfo: null,
             loadClass: null,
         }
+
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.AddbyKey = this.AddbyKey.bind(this);
         this.reset = this.reset.bind(this);
-
     }
     componentDidMount(){
         console.log('Loading!!')
@@ -148,15 +148,16 @@ class AddForm extends Component {
     }
 
     render() {
+        const { loadClass, front, back, formInfo} = this.state
         return (
             <div className="addForm">
-                <div className={`${this.state.loadClass}`}></div>
+                <div className={`${loadClass}`}></div>
                 <div className="addForm__inputs">
-                    <input className="addForm__inputs--input" type="text" name="front" placeholder="Awers"  value={this.state.front} onChange={this.onChange} onKeyPress={this.AddbyKey} />
-                    <input className="addForm__inputs--input" type="text" name="back" placeholder="Rewers" value={this.state.back} onChange={this.onChange} onKeyPress={this.AddbyKey} />
+                    <input className="addForm__inputs--input" type="text" name="front" placeholder="Awers"  value={front} onChange={this.onChange} onKeyPress={this.AddbyKey} />
+                    <input className="addForm__inputs--input" type="text" name="back" placeholder="Rewers" value={back} onChange={this.onChange} onKeyPress={this.AddbyKey} />
                     <input className="addForm__inputs--input--add" onClick={this.onSubmit}  type="submit" value="Dodaj" />
-                        {this.state.formInfo && (
-                            <FormInfo formInfo={this.state.formInfo} />
+                        {formInfo && (
+                            <FormInfo formInfo={formInfo} />
                         )}
                 </div>
                 <input className="addForm--delete" onDoubleClick={this.reset} type="submit" value="Usuń wszystkie"/>
