@@ -1,5 +1,5 @@
 import React from 'react';
-import FormToggle from "./formToggle";
+import FormToggle from "./form_components/formToggle";
 
 const Header = () => {
     return (

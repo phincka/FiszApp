@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import AddForm from "./addForm";
 
 class FormToggle extends Component {
     constructor() {
@@ -53,7 +54,10 @@ class FormToggle extends Component {
         return (
             <div className="header__form">
                 <div className={this.state.loadClass}></div>
-                <Link to={ path } className={`header__form--formButton ${this.state.disActive}`} onClick={this.formToggle}>{ title }</Link>
+                <Router>
+                    <Route path="/add-card" component={AddForm}/>
+                    <Link to={ path } className={`header__form--formButton ${this.state.disActive}`} onClick={this.formToggle}>{ title }</Link>
+                </Router>
             </div>
         );
     }

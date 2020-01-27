@@ -134,7 +134,8 @@ class GamePanel extends Component {
                             </div>
                         )
                     }
-                    <a href="/" className="disactive-button">Wróć</a>
+
+                    <a href='/' className="disactive-button">Wróć</a>
                 </div>
             );
     }
